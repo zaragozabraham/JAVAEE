@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Ciudades Alta</title>
+    </h:head>
+    <ui:composition template="./../resources/template.xhtml">
+        
+        <ui:define name="top">
+            <h1>Ciudades Alta</h1>
+        </ui:define>
+        
+        <ui:define name="izquierda">
+            <h:outputText value="Nombre: "/><br/>
+            <h:inputText value="#{ciudadesController.ciudades.nombre}"
+                         validator="nombreValidator"
+                         required="true"
+                         requiredMessage="El nombre de la ciudad es obligatorio."/>
+        </ui:define>
+            
+        <ui:define name="centro">
+            <h:outputText value="Estado: "/><br/>
+            <h:selectOneMenu value="#{ciudadesController.ciudades.estado}"
+                         required="true"
+                         requiredMessage="El estado es obligatorio.">
+                <f:selectItem itemLabel="Seleccione un estado"
+                              noSelectionOption="true"
+                              itemValue="0"/>
+                <f:selectItems value="#{estadosController.findAll()}"
+                               var="estado" itemLabel="#{estado.nombre}"/>
+            </h:selectOneMenu><br/><br/>
+        </ui:define>
+        
+        <ui:define name="botones">
+            <h:commandButton value="Agregar" action="#{ciudadesController.insert()}"/>
+            <h:outputText value=" " escape="false" />
+            <h:commandButton value="Regresar" action="/Ciudades/ciudadesList"/>
+        </ui:define>
+        
+        <ui:define name="mensajes">
+            <h:messages/>
+        </ui:define>
+            
+    </ui:composition>
+</html>
+

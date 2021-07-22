@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Usuario Alta</title>
+    </h:head>
+    <ui:composition template="./../resources/template.xhtml">
+        
+        <ui:define name="top">
+            <h1>Usuario Alta</h1>
+        </ui:define>
+        
+        <ui:define name="izquierda">
+            <h:outputText value="Nombre: "/><br/>
+            <h:inputText value="#{usuarioController.usuario.nombreUsuario}"
+                         validator="nombreValidator" maxlength="50"
+                         required="true"
+                         requiredMessage="El nombre de usuario es obligatorio."/>
+        </ui:define>
+            
+        <ui:define name="centro">
+            <h:outputText value="Email: "/><br/>
+            <h:inputText value="#{usuarioController.usuario.email}"
+                         maxlength="60"
+                         required="true" validator="emailValidator"
+                         requiredMessage="El email es obligatorio."/><br/>
+            
+            <h:outputText value="Contraseña: "/><br/>
+            <h:inputText value="#{usuarioController.usuario.contrasena}"
+                         required="true" maxlength="30"
+                         requiredMessage="La contraseña es obligatoria."/>
+        </ui:define>
+            
+        <ui:define name="derecha">
+            <h:outputText value="Perfil: "/><br/>
+            <h:inputText value="#{usuarioController.usuario.perfil}"
+                         required="true" maxlength="1" validator="numerosValidator"
+                         requiredMessage="El perfil es requerido."/><br/><br/>
+        </ui:define>
+            
+        <ui:define name="botones">
+            <br/>
+            <h:commandButton value="Agregar" action="#{usuarioController.insert()}"/>
+        </ui:define>
+        
+        <ui:define name="mensajes">
+            <h:messages/>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <ui:composition template="./../resources/template.xhtml">
+        
+        <ui:define name="top">
+            <h1>Vuelos Edit</h1>
+        </ui:define>
+        
+        <ui:define name="izquierda">
+            <h:outputText value="No. de Vuelo: "/><br/>
+            <h:inputText value="#{vuelosController.vuelos.noVuelo}"
+                         required="true" validator="numerosValidator"
+                         maxlength="20"
+                         requiredMessage="El no de vuelo es obligatorio."/><br/>
+
+            <h:outputText value="No. de Avión: "/><br/>
+            <h:selectOneMenu value="#{vuelosController.vuelos.noDeAvion}"
+                             required="true"
+                             requiredMessage="El no de avión es obligatorio.">
+                <f:selectItem itemLabel="Seleccione un no de vuelo"
+                              noSelectionOption="true"
+                              itemValue="0"/>
+                <f:selectItems value="#{avionesController.findAll()}"
+                               var="p" itemLabel="#{p.noDeAvion}"/>
+            </h:selectOneMenu><br/>
+
+            <h:outputText value="Origen: "/><br/>
+            <h:selectOneMenu value="#{vuelosController.vuelos.origen}"
+                             required="true"
+                             requiredMessage="La ciudad de origen es obligatoria.">
+                <f:selectItem itemLabel="Seleccione una ciudad."
+                              noSelectionOption="true"
+                              itemValue="0"/>
+                <f:selectItems value="#{ciudadesController.findAll()}"
+                               var="ciudad" itemLabel="#{ciudad.nombre}"/>
+            </h:selectOneMenu><br/>
+        </ui:define>
+
+        <ui:define name="centro">
+            <h:outputText value="Destino: "/><br/>
+            <h:selectOneMenu value="#{vuelosController.vuelos.destino}"
+                             required="true"
+                             requiredMessage="La ciudad de destino es obligatoria.">
+                <f:selectItem itemLabel="Seleccione una ciudad"
+                              noSelectionOption="true"
+                              itemValue="0"/>
+                <f:selectItems value="#{ciudadesController.findAll()}"
+                               var="ciudad" itemLabel="#{ciudad.nombre}"/>
+            </h:selectOneMenu><br/>
+
+            <h:outputText value="Fecha de Inicio: "/><br/>
+            <h:inputText value="#{vuelosController.vuelos.fechaInicio}"
+                         required="true"
+                         requiredMessage="La fecha de inicio es obligatoria.">
+                <f:convertDateTime type="date" pattern="dd/MM/yyyy" timeZone="GMT-6"/>
+            </h:inputText><br/>
+
+            <h:outputText value="Fecha de Fin "/><br/>
+            <h:inputText value="#{vuelosController.vuelos.fechaFin}"
+                         required="true"
+                         requiredMessage="La fecha de fin es obligatoria.">
+                <f:convertDateTime type="date" pattern="dd/MM/yyyy" timeZone="GMT-6"/>
+            </h:inputText>
+        </ui:define>
+
+        <ui:define name="derecha">
+            <h:outputText value="Hora de Inicio: "/><br/>
+            <h:inputText value="#{vuelosController.vuelos.horaInicio}"
+                         required="true"
+                         requiredMessage="La hora de inicio es obligatoria.">
+                <f:convertDateTime type="time" pattern="hh:mm" timeZone="GMT-6"/>
+            </h:inputText>
+            <br></br>
+
+            <h:outputText value="Hora de Fin "/><br/>
+            <h:inputText value="#{vuelosController.vuelos.horaFin}"
+                         required="true"
+                         requiredMessage="La hora de fin es obligatoria.">
+                <f:convertDateTime type="time" pattern="hh:mm" timeZone="GMT-6"/>
+            </h:inputText>
+        </ui:define>
+
+        <ui:define name="botones">
+            <br/>
+            <h:commandButton value="Guardar" action="#{vuelosController.update()}"/>
+            <h:outputText value=" " escape="false" />
+            <h:commandButton value="Regresar" action="/Vuelos/vuelosList"/>
+        </ui:define>
+        
+        <ui:define name="mensajes">
+            <h:messages/>
+        </ui:define>
+    </ui:composition>
+</html>
+

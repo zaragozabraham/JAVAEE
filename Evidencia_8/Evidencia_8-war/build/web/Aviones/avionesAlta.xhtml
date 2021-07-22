@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Aviones Alta</title>
+    </h:head>
+    <ui:composition template="./../resources/template.xhtml">
+        
+        <ui:define name="top">
+            <h1>Aviones Alta</h1>
+        </ui:define>
+        
+        <ui:define name="izquierda">
+            <h:outputText value="No. de Avión: "/><br/>
+            <h:inputText value="#{avionesController.aviones.noDeAvion}"
+                         validator="numerosValidator" maxlength="20"
+                         required="true"
+                         requiredMessage="El número de avión es obligatorio."/>
+            <br/>
+        </ui:define>
+        
+        <ui:define name="centro">
+            <h:outputText value="Capacidad de Pasajeros: "/><br/>
+            <h:inputText value="#{avionesController.aviones.capacidadDePasajeros}"
+                         validator="numerosValidator" maxlength="20"
+                         required="true" 
+                         requiredMessage="La capacidad de pasajeros en obligatoria."/>
+            <br/>
+            
+            <h:outputText value="Modelo: "/><br/>
+            <h:inputText value="#{avionesController.aviones.modelo}"
+                         validator="codigoValidator" maxlength="25"
+                         required="true"
+                         requiredMessage="El modelo de avión es obligatorio."/>
+            <br/>
+        </ui:define>
+            
+        <ui:define name="derecha">
+            <h:outputText value="Aerolinea: "/><br/>
+            <h:inputText value="#{avionesController.aviones.aerolinea}"
+                         validator="palabrasValidator" maxlength="35"
+                         required="true"
+                         requiredMessage="La aerolinea es obligatoria."/>
+            <br/>
+        </ui:define>
+        
+        <ui:define name="botones">
+            <br/>
+            <h:commandButton value="Agregar" action="#{avionesController.insert()}"/>
+        </ui:define>
+        
+        <ui:define name="mensajes">
+            <h:messages/>
+        </ui:define>
+    </ui:composition> 
+</html>
+

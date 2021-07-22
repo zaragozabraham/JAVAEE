@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Estados Table</title>
+    </h:head>
+    <ui:composition template="./../resources/tableTemplate.xhtml">
+        <ui:define name="top">
+            <h1>Estados List</h1>
+        </ui:define>
+        
+        <ui:define name="centro">
+            <h:dataTable value="#{estadosController.findAll()}" var="p" border="5">
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                    #{p.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Pais</f:facet>
+                    #{p.pais.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Editar</f:facet>
+                    <h:commandButton value="Editar" action="#{estadosController.prepareEdit(p)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Eliminar</f:facet>
+                    <h:commandButton value="Eliminar" action="#{estadosController.prepareConfirm()}" rendered="#{!estadosController.confirm}"/>
+                    <h:commandButton value="Si" rendered="#{estadosController.confirm}" action="#{estadosController.delete(p)}"/>
+                    <h:commandButton value="No" rendered="#{estadosController.confirm}" action="#{estadosController.mainClean('estadosList')}"/>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+            
+        <ui:define name="botones">
+            <h:commandButton value="Regresar" action="/index"/>
+            <h:outputText value=" " escape="false" />
+            <h:commandButton value="Agregar nuevo" action="#{estadosController.mainClean('estadosAlta')}"/>
+        </ui:define>
+            
+    <ui:define name="mensajes">
+        <h:messages/>
+    </ui:define>
+            
+    </ui:composition>
+</html>
+

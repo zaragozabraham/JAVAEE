@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Usuario List</title>
+    </h:head>
+    <ui:composition template="./../resources/tableTemplate.xhtml">
+        <ui:define name="top">
+            <h1>Usuario List</h1>
+        </ui:define>
+        
+        <ui:define name="centro">
+            <h:dataTable value="#{usuarioController.findAll()}" var ="p" border="5">
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                    #{p.nombreUsuario}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    #{p.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Contraseña</f:facet>
+                    #{p.contrasena}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Perfil</f:facet>
+                    #{p.perfil}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Editar</f:facet>
+                    <h:commandButton value="Editar" action="#{usuarioController.prepareEdit(p)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Eliminar</f:facet>
+                    <h:commandButton value="Eliminar" action="#{usuarioController.prepareConfirm()}" rendered="#{!usuarioController.confirm}"/>
+                    <h:commandButton value="Si" rendered="#{usuarioController.confirm}" action="#{usuarioController.delete(p)}"/>
+                    <h:commandButton value="No" rendered="#{usuarioController.confirm}" action="#{usuarioController.mainClean('usuarioList')}"/>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+            
+        <ui:define name="botones">
+            <h:commandButton value="Regresar" action="/index"/>
+            <h:outputText value=" " escape="false" />
+            <h:commandButton value="Agregar nuevo" action="#{usuarioController.mainClean('usuarioAlta')}"/>
+        </ui:define>
+        
+        <ui:define name="mensajes">
+            <h:messages/>
+        </ui:define>
+    </ui:composition>
+</html>
+

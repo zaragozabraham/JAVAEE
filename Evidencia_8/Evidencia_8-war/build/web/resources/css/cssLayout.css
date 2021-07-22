@@ -1,0 +1,95 @@
+#top{
+    background-color: #453FB2;
+    margin: 0px;
+    text-align: center;
+}
+
+h1{
+    font-size: 40px;
+    font-family: Verdana, sans-serif;
+    color: #f1f4f7;
+}
+
+#index{
+    width: 90%;
+    margin-left: auto;
+}
+
+#contenedor{
+    position: relative;
+    height: 55%;
+    max-height: 500px;
+    width: 100%;
+}
+
+#izquierda, #centro, #derecha{
+    position: relative;
+    height: 50%;
+    width: 33.333%;
+    align-content: center;
+    font-family: Verdana, sans-serif;
+    font-size: 17px;
+    text-align: center;
+}
+
+#izquierda{
+    float: left;
+}
+
+#centro{
+    display: inline-block;
+    margin: auto;
+}
+
+#derecha{
+    float: right;
+}
+
+table{
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    border-collapse: collapse;
+    border: 0px;
+    width: 95%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #635bff;
+  color: white;
+}
+
+input[type=text] {
+  border: 1px solid;
+  height: 18px;
+}
+
+input[type=text]:focus {
+  border: 3px solid #999;
+}
+
+#botones{
+    margin-bottom: 5px;
+    margin-left: auto;
+    width: 60%;
+}
+
+html, body{
+    padding: 0px;
+    background-color: #f5f5f5;
+}
